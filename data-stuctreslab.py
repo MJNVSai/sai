@@ -90,4 +90,52 @@ First line contains N  and K
 Second line contains N  integers.
 Output:
 Print the Number of sub-arrays having Primicity<= K 
+
+Program:
 '''
+
+# PRIMICITY
+ 
+def primicity(num):
+    if num > 1:
+ 
+        for i in range(2, int(num/2)+1):
+      
+            if (num % i) == 0:
+                return False
+            else:
+                return True
+  
+    return False
+ 
+def sub_lists (l):
+    lists = [[]]
+    for i in range(len(l) + 1):
+        for j in range(i):
+            lists.append(l[j: i])
+    return lists
+ 
+ 
+n = int(input("Enter N : "))
+k = int(input("Enter K : "))
+ 
+arr = []
+for i in range(n):
+    e=int(input("Enter element {} : ".format(i+1)))
+    arr.append(e)
+    
+print(arr)
+temp = sub_lists(arr)
+ 
+count=[]
+ans = []
+ 
+for i in temp:
+    for j in i:
+        if primicity(j):
+            count.append(j)
+        
+    if len(count) <= k :
+        ans.append(i)
+ 
+print("The no of subarrays : {}".format(len(ans)))
